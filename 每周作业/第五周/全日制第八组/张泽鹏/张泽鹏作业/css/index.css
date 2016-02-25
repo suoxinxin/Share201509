@@ -1,0 +1,457 @@
+
+@import "reset.css";
+@import "function.css";
+
+#nav {
+    height: 40px;
+}
+#showlist {
+    margin-top: 10px;
+}
+#nav, #showlist,#hot {
+    width: 1210px;
+    margin: 0 auto;
+}
+.Red, a.Red {
+    color: #e4393c
+}
+
+.White, a.White {
+    color: #fff;
+    background: #e4393c
+}
+
+
+
+#nav {
+}
+
+#nav .navWrap {
+}
+
+#nav .navWrap .allListTitle {
+    width: 210px;
+    height: 40px;
+}
+
+#nav .navWrap .allListTitle a {
+    width: 190px;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+
+#nav .navWrap .listHorizontal {
+    width: 1000px;
+}
+
+#nav .navWrap .listHorizontal li {
+    float: left;
+}
+
+#nav .navWrap .listHorizontal li a {
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;;
+    float: left;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#nav .navWrap .listHorizontal li a.active {
+    background: #a40000
+}
+
+#nav .navWrap .listHorizontal li a:hover {
+    background: #a40000;
+    text-decoration: none;
+}
+
+#nav .navWrap .treasure {
+    right: 0;
+    top: 0;
+    *margin-left: -3px;
+}
+
+/*
+#nav .navWrap .treasure a {
+    display: block;
+    width: 141px;
+    height: 40px;
+    background: url(../img/treasure.gif);
+}
+*/
+
+#nav .listVertical {
+    width: 210px;
+    top: 40px;
+    left: 0;
+    z-index: 10;
+}
+
+#nav .listVertical ul {
+    width: 206px;
+    height: 405px;
+    padding-top: 3px;;
+    border: 2px solid #e4393c;
+    border-top: none;
+    background: #fafafa
+}
+
+#nav .listVertical li {
+    padding-left: 14px;
+    width: 192px;
+    height: 26px;
+    line-height: 26px;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+}
+
+#nav .listVertical li:hover {
+    background: #fff;
+    border-color: #999;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2)
+}
+
+#nav .listVertical li a:hover {
+    font-weight: bold;
+}
+
+#nav .subContain {
+    width: 705px;
+    left: 202px;
+    z-index: 20;
+}
+
+#nav .subContain .subContainer {
+    display: none;
+    width: 703px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    background: #fff;;
+    border: 1px solid #ddd;
+    box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.3)
+}
+
+#nav .subContain .subContainer .sectionLeft {
+    float: left;
+    width: 477px;
+    padding: 0 8px;
+}
+
+#nav .subContain .subContainer .sectionLeft dl {
+    width: 477px;
+    border-top: 1px solid #ddd;
+    overflow: hidden;
+}
+
+#nav .subContain .subContainer .sectionLeft dt {
+    float: left;
+    width: 54px;
+    text-align: right;
+    padding: 10px 0;
+}
+
+#nav .subContain .subContainer .sectionLeft dt a {
+    color: #e4393c;
+    font-weight: bold;
+}
+
+#nav .subContain .subContainer .sectionLeft dd {
+    float: right;
+    width: 415px;
+    padding: 10px 0;
+}
+
+#nav .subContain .subContainer .sectionLeft dd em {
+    padding: 0 8px;
+    border-left: 1px solid #ddd;
+}
+
+#nav .subContain .subContainer .sectionRight {
+    float: right;
+    width: 194px;
+    padding: 12px 8px
+}
+
+#nav .subContain .subContainer .sectionRight .ad {
+    width: 194px;
+    height: 70px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#nav .subContain .subContainer .sectionRight dl {
+    margin-bottom: 10px;
+}
+
+#nav .subContain .subContainer .sectionRight dt {
+    color: #e4393c;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px;
+}
+
+#nav .subContain .subContainer .sectionRight dd {
+    float: left;
+    width: 97px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+}
+
+#nav .subContain .subContainer.item1 .sectionRight dd {
+    width: 194px;
+}
+#showlist {
+    margin-bottom: 10px;
+}
+
+#showlist .showlist_left {
+    display: inline;
+    width: 670px;
+    height: 400px;
+    margin-left: 220px;
+}
+#showlist .showlist_right {
+    width: 310px;
+    height: 400px;
+}
+
+#showlist .showlist_left .pics_carousel {
+    width: 670px;
+    height: 240px;
+}
+
+#showlist .showlist_left .pics_carousel ul.pics {
+}
+
+#showlist .showlist_left .pics_carousel ul.pics li {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+#showlist .showlist_left .pics_carousel ul.pics li.active {
+    display: block;
+}
+
+#showlist .showlist_left .pics_carousel ul.pics img {
+    width: 670px;
+    height: 240px;
+}
+
+#showlist .showlist_left .pics_carousel ul.controls {
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    width: 670px;
+    height: 22px;
+    padding: 4px 0 4px 508px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#showlist .showlist_left .pics_carousel ul.controls li {
+    float: left;
+    margin-right: 5px;
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    background: #999;
+    cursor: pointer;
+}
+
+#showlist .showlist_left .pics_carousel ul.controls li.active {
+    background: #e4393c
+}
+
+#showlist .showlist_left .pics_scroll {
+    width: 668px;
+    height: 159px;
+    border: 1px solid #999;
+    border-top: none;
+}
+
+#showlist .showlist_left .pics_scroll a {
+    top: 0;
+    width: 30px;
+    height: 159px;
+    z-index: 2;
+    background: #fff
+}
+
+#showlist .showlist_left .pics_scroll a.prev {
+    left: 0;
+}
+
+#showlist .showlist_left .pics_scroll a.next {
+    right: 0;
+}
+
+#showlist .showlist_left .pics_scroll a img {
+    top: 65px;
+    left: 0;
+}
+
+#showlist .showlist_left .pics_scroll .pics_show {
+    width: 609px;
+    height: 159px;
+    margin: 0 30px;
+}
+
+#showlist .showlist_left .pics_scroll .pics_show ul {
+    width: 3654px;
+    height: 159px;
+    left: 0;
+    top: 0;
+}
+
+/*width:; 609*6*/
+#showlist .showlist_left .pics_scroll .pics_show li {
+    float: left;
+    border-right: 1px solid #ddd
+}
+
+#showlist .showlist_left .pics_scroll .pics_show img {
+    width: 202px;
+    height: 159px;
+}
+#showlist .showlist_right {
+}
+
+#showlist .showlist_right .ad {
+    width: 310px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+#showlist .showlist_right .news {
+    margin-bottom: 10px;
+}
+
+#showlist .showlist_right .news .news_title {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 2px solid #aaa;
+}
+
+#showlist .showlist_right .news .news_title a:hover {
+    color: #005ea7
+}
+
+#showlist .showlist_right .news .news_content {
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+#showlist .showlist_right .news .news_content ul {
+    padding: 4px 0;
+}
+
+#showlist .showlist_right .news .news_content li {
+    float: left;
+    width: 153px;
+    height: 25px;
+    line-height: 25px;
+    border-right: 1px solid #eee
+}
+
+#showlist .showlist_right .news .news_content {
+}
+
+#showlist .showlist_right .virtuals {
+    zoom: 1;
+    overflow: hidden;
+}
+
+/* FUCK IE */
+#showlist .showlist_right .virtuals i {
+    position: absolute;;
+    width: 77px;
+    height: 5px;
+    left: 0;
+    top: 27px;
+    overflow: hidden;;
+    background: url(../img/tab_arrow.png);
+}
+
+#showlist .showlist_right .virtuals .virtuals_title {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 2px solid #aaa;
+}
+
+#showlist .showlist_right .virtuals .virtuals_title a {
+    float: left;
+    width: 77px;
+    height: 30px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: #e4393c;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content {
+    width: 308px;
+    height: 136px;
+    border: 1px solid #f1f1f1;
+    border-top: none;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .main {
+    display: none;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .main.active {
+    display: block;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .phonebill {
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .phonebill .item {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .phonebill label {
+    width: 55px;
+    height: 22px;
+    line-height: 22px;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .phonebill span {
+    height: 20px;
+    line-height: 20px;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .phonebill input[type=button] {
+    padding: 4px 6px;
+    background: #e4393c;
+    border: none;
+    border-radius: 3px;
+    color: #fff
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .phonebill a {
+    color: #005ea7;
+    height: 20px;
+    line-height: 20px;
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .travel {
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .lottery {
+}
+
+#showlist .showlist_right .virtuals .virtuals_content .games {
+}

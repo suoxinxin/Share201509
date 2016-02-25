@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        a, a:hover, a:active, a:target {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        #box {
+            float: left;
+            position: absolute;
+            top: 64px;
+            left: 50px;
+            z-index:20;
+        }
+
+        span {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 50px;
+            padding-left: 10px;
+            width: 201px;
+            height: 44px;
+            line-height: 44px;
+            background: #B1191A;
+            color: #fff;
+        }
+
+        #box #floor {
+            float: left;
+            position: relative;
+            z-index: 20;
+            border-left: 1px solid #b61d1d;
+            border-bottom: 1px solid #b61d1d;
+        }
+
+        #box #floor li {
+            display: block;
+            position: relative;
+            width: 210px;
+            height: 31px;
+            color: #fff;
+            background: #c81623;
+            cursor: pointer;
+        }
+
+        #box #floor li.select {
+            color: #b61d1d;
+            background: #eee;
+        }
+
+        #box #floor li a {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 31px;
+            line-height: 31px;
+        }
+
+        #box #floor li a.s1 {
+            color: #b61d1d;
+        }
+
+        #box #floor i {
+            position: absolute;
+            top: 9px;
+            right: 14px;
+            display: block;
+            height: 14px;
+            width: 4px;
+            font-family: consolas;
+            font-size: 9px;
+            font-weight: 400;
+        }
+
+        #box #show {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            left: 210px;
+            float: left;
+            padding: 20px;
+            height: 500px;
+            width: 988px;
+            color: red;
+            background: #eee;
+            border: 1px solid #b61d1d;
+        }
+
+        .outer {
+            float: left;
+            position: absolute;
+            left: 220px;
+            bottom: 0;
+            height: 454px;
+            width: 730px;
+            box-shadow: 3px 3px 2px 0 #aaa;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .outer .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 454px;
+            width: 5110px;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        .outer div {
+            float: left;
+            height: 454px;
+            width: 730px;
+            background: url("img/default.gif") no-repeat center center;
+        }
+
+        .outer img {
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .outer ul {
+            position: absolute;
+            left: 299px;
+            bottom: 10px;
+        }
+
+        .outer ul li {
+            display: block;
+            float: left;
+            margin: 0 2px;
+            height: 18px;
+            line-height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 12px;
+            color: #fff;
+            background: #3e3e3e;
+            cursor: pointer;
+        }
+
+        .outer ul li.tip {
+            background: #b61b1f;
+        }
+        .outer a{
+            display: block;
+            height:62px;
+            line-height:62px;
+            width: 28px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 400;
+            font-family: simsun;
+            background: rgba(0,0,0,.2);
+        }
+        .outer .btnLeft,.btnRight{
+            display: none;
+            position:absolute;
+            top:50%;
+            margin-top:-31px;
+        }
+        .outer .btnRight{
+            display: none;
+            right:0;
+        }
+
+    </style>
+</head>
+<body>
+<span>全部商品分类</span>
+
+<div id="box">
+    <ul id="floor">
+        <li>
+            <a href="">家用电器</a><i>></i>
+        </li>
+        <li>
+            <a href="">手机、数码、京东通信</a><i>></i>
+        </li>
+        <li>
+            <a href="">电脑、办公</a><i>></i>
+        </li>
+        <li>
+            <a href="">家居、家具、家装、厨具</a><i>></i>
+        </li>
+        <li>
+            <a href=""> 男装、女装、内衣、珠宝</a><i>></i>
+        </li>
+        <li>
+            <a href="">个人化妆、清洁用品</a><i>></i>
+        </li>
+        <li>
+            <a href="">鞋靴、箱包、钟表、奢侈品</a><i>></i>
+        </li>
+        <li>
+            <a href="">运动户外</a><i>></i>
+        </li>
+        <li>
+            <a href="">汽车、汽车用品</a><i>></i>
+        </li>
+        <li>
+            <a href="">母婴、玩具乐器</a><i>></i>
+        </li>
+        <li>
+            <a href="">食品、酒类、生鲜、特产</a><i>></i>
+        </li>
+        <li>
+            <a href="">营养保健</a><i>></i>
+        </li>
+        <li>
+            <a href="">图书、音像、电子书</a><i>></i>
+        </li>
+        <li>
+            <a href="">彩票、旅行、充值、票务</a><i>></i>
+        </li>
+        <li>
+            <a href="">理财、众筹、白条、保险</a><i>></i>
+        </li>
+    </ul>
+    <div id="show">
+    </div>
+    <div class="outer" id="outer">
+        <div class="inner" id="inner">
+            <div><img src='' trueImg="img/jd1.jpg"/></div>
+            <div><img src='' trueImg="img/jd2.jpg"/></div>
+            <div><img src='' trueImg="img/jd3.jpg"/></div>
+            <div><img src='' trueImg="img/jd4.jpg"/></div>
+            <div><img src='' trueImg="img/jd5.jpg"/></div>
+            <div><img src='' trueImg="img/jd6.jpg"/></div>
+            <div><img src='' trueImg="img/jd1.jpg"/></div>
+        </div>
+        <ul id="tip">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+        <a href="javascript:void(0)" class="btnLeft" id="btnLeft">&lt;</a>
+        <a href="javascript:void(0)" class="btnRight" id="btnRight">&gt;</a>
+    </div>
+    <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="js/banner-jQuery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var $box = $("#box");
+            var $floor = $("#floor"), $show = $("#show");
+            $box.bind("mouseover", function (e) {
+                e = e || window.event;
+                var $tar = $(e.target || e.srcElement);//事件源
+                var $par = $tar.parent();//事件源的父级元素
+                $floor.find("li").removeClass("select").find("a").removeClass("s1").next().css("display", "block");
+                //点击li的时候
+                if (e.target.tagName.toLowerCase() === "li" && $par[0].id === "floor") {
+                    $tar.addClass("select").find("a").addClass("s1").next().css("display", "none");
+                    $show.stop().show().prop("innerHTML", $tar.find("a").prop("innerHTML"));
+                    return;
+                }
+                //鼠标滑过a或者i
+                if ($par[0].tagName.toLowerCase() === "li" && ($tar[0].tagName.toLowerCase() === "a" || $tar[0].tagName.toLowerCase() === "i")) {
+                    $par.addClass("select").find("a").addClass("s1").next().css("display", "none");
+                    $show.stop().show().prop("innerHTML", $par.find("a").prop("innerHTML"));
+                    return;
+                }
+                if ($tar[0].id === "show") {
+                    var inner = $tar.prop("innerHTML");
+                    $tar.prev().children("li").each(function (index,item) {
+                        var $cur = $(this).find("a");
+                        if ($cur.prop("innerHTML") === inner) {
+                            $(this).addClass("select");
+                            $cur.addClass("s1").next().css("display", "none");
+                            $show.stop().show();
+                        }
+                    });
+                }
+            }).bind("mouseout", function (e) {
+                $floor.find("li").removeClass("select").find("a").removeClass("s1").next().css("display", "block");
+                $show.stop().hide();
+            });
+        })
+    </script>
+</div>
+</body>
+</html>

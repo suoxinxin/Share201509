@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            paddng: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .box {
+            position: absolute;
+            /*top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -150px;*/
+            /*position: absolute;*/
+            width: 300px;
+            height: 300px;
+            background: lightskyblue;
+        }
+
+        .box h2 {
+            padding: 0 20px;
+            height: 35px;
+            line-height: 35px;
+            background: pink;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <h2 id="boxTop">用户登录</h2>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+
+    (function(){
+        var $winH=$(window).height(),$winW=$(window).width();
+        var $box=$("#box"),$boxTop=$("#boxTop");
+        $box.css("top", ($winH - $box.outerHeight()) / 2);
+        $box.css("left", ($winW - $box.outerWidth()) / 2);
+        var _this=null;
+        function fn1(){
+            move.call(_this);
+        }
+        function fn2(){
+            up.call(_this);
+        }
+
+        $boxTop.bind("mousedown",down);
+        function down(e){
+            e=e||window.event;
+            if(this.setCapture){
+                this.setCapture();
+                $boxTop.bind("mousemove",move).bind("mouseup",up);
+            }else {
+                _this=this;
+                $(document).bind("mousemove",fn1).bind("mouseup",fn2);
+            }
+            $(this).attr({
+                "mouseX": e.clientX,
+                "mouseY":e.clientY,
+                "boxL":parseFloat($box.css("left")),
+                "boxT":parseFloat($box.css("top"))
+            });
+            console.log(parseFloat($box.css("left")));
+        }
+        function move(e){
+            e=e||window.event;
+            e.target= e.target|| e.srcElement;
+            var $curL= (e.clientX-parseFloat($(this).attr("mouseX")))+parseFloat($(this).attr("boxL"));
+            var $curT= (e.clientY-parseFloat($(this).attr("mouseY")))+parseFloat($(this).attr("boxT"));
+            var $minL= 0,$minT= 0,$maxL=$winW-$box.outerWidth(),$maxT=$winH-$box.outerHeight();
+            $curL = $curL <= $minL ? $minL : ($curL >= $maxL ? $maxL : $curL);
+            $curT = $curT <= $minT ? $minT : ($curT >= $maxT ? $maxT :$curT);
+            $box.css("left",$curL);
+            $box.css("top",$curT);
+        }
+
+        function up(e){
+            if(this.releaseCapture){
+                this.releaseCapture();
+                $boxTop.unbind("mousemove",move).unbind("mouseup",up);
+            }else {
+                $(document).unbind("mousemove",fn1).unbind("mouseup",fn2);
+            }
+            $(this).attr({
+                "mouseX":null,
+                "mouseY":null,
+                "boxL":null,
+                "boxT":null
+            });
+        }
+    })();
+
+    /*$(function(){
+        var _move=false;//移动标记
+        var _x,_y;//鼠标离控件左上角的相对位置
+        $("#box").mousedown(function(e){
+            _move=true;
+            _x=e.pageX-parseFloat($("#box").css("left"));
+            _y=e.pageY-parseFloat($("#box").css("top"));
+
+        });
+        $(document).mousemove(function(e){
+            if(_move){
+                var x=e.pageX-_x;//移动时根据鼠标位置计算控件左上角的绝对位置
+                var y=e.pageY-_y;
+                $("#box").css({top:y,left:x});//控件新位置
+            }
+        }).mouseup(function(){
+            _move=false;
+        });
+    });*/
+
+</script>
+</body>
+</html>

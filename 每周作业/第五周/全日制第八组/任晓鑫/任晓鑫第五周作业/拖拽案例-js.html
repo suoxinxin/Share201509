@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 14px;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .box{
+            position: absolute;
+            width: 300px;
+            height:300px;
+            background: lightskyblue;
+        }
+        .box h2{
+            padding: 0 20px;
+            height: 35px;
+            line-height: 35px;
+            background: pink;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <h2 id="boxTop">用户登录</h2>
+</div>
+<script type="text/javascript">
+    var box=document.getElementById("box");
+    //设置盒子开始位置在正中间
+    box.style.top=((document.documentElement.clientHeight||document.body.clientHeight)-box.offsetHeight)/2+"px";
+    box.style.left=((document.documentElement.clientWidth||document.body.clientWidth)-box.offsetWidth)/2+"px";
+
+    box.onmousedown=down;
+
+    function down(e){
+        e=e||window.event;
+        //记录开始位置的信息
+        this["mouseX"]= e.clientX;
+        this["mouseY"]= e.clientY;
+        this["boxT"]= parseFloat(this.style.top);
+        this["boxL"]=parseFloat(this.style.left);
+        if(this.setCapture){//把当前的鼠标和this（box）绑定在一起
+            this.setCapture();
+            this.onmousemove=move;
+            this.onmouseup=up;
+        }else {
+            var _this=this;
+            document.onmousemove=function(e){
+                move.call(_this,e);
+            };
+            document.onmouseup=function(e){
+                up.call(_this,e);
+            };
+        }
+    }
+    function move(e){
+        e=e||window.event;
+        var curL=(e.clientX-this["mouseX"])+this["boxL"];
+        var curT=(e.clientY-this["mouseY"])+this["boxT"];
+        var minL= 0,minT= 0,maxL=(document.documentElement.clientWidth||document.body.clientWidth)-this.offsetWidth,maxT=(document.documentElement.clientHeight||document.body.clientHeight)-this.offsetHeight;
+
+        curL=curL<minL?minL:(curL>maxL?maxL:curL);
+        curT=curT<minT?minT:(curT>maxT?maxT:curT);
+
+        this.style.left=curL+"px";
+        this.style.top=curT+"px";
+
+    }
+    function up(e){
+        if(this.releaseCapture){
+            this.releaseCapture();
+            this.onmousemove=null;
+            this.onmouseup=null;
+        }else {
+            document.onmousemove=null;
+            document.onmouseup=null;
+        }
+    }
+</script>
+</body>
+</html>
