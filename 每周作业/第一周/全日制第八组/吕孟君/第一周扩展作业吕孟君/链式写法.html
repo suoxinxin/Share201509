@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+</html>
+<!--2、扩展作业(链式写法)
+   实现 (5).plus(3).minus(2) ->5+3-2
+   Number.prototype.plus...
+   Number.prototype.minus...
+-->
+<script type="text/javascript">
+    Number.prototype.plus = function (n) {
+        n = Number(n);
+        return this + n;
+    };
+    Number.prototype.minus = function (n) {
+        n = Number(n);
+        return this - n;
+    };
+    console.log((5).plus(3).minus(2));
+    var res = (3).minus(2);
+    console.log(res);
+</script>

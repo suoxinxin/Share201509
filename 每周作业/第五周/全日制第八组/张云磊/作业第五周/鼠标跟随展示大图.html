@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        img{
+        display: block;
+        border:none;
+        }
+        .box {
+            position: relative;
+            margin: 20px auto;
+            width: 450px;
+        }
+
+        .box img {
+            float: left;
+            margin-left: 10px;
+            width: 100px;
+            height: 75px;
+            border: 1px solid silver;
+        }
+
+        #mark {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 400px;
+            height: 300px;
+            border: 1px solid green;
+            z-index: 10;
+        }
+
+        #mark img {
+            margin-left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <img src="img/apple_1.jpg" bigImg="img/apple_1_bigger.jpg" alt=""/>
+    <img src="img/apple_2.jpg" bigImg="img/apple_2_bigger.jpg" alt=""/>
+    <img src="img/apple_3.jpg" bigImg="img/apple_3_bigger.jpg" alt=""/>
+    <img src="img/apple_4.jpg" bigImg="img/apple_4_bigger.jpg" alt=""/>
+
+    <div id="mark">
+        <img src="img/apple_1_bigger.jpg" alt=""/>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var box = document.getElementById("box"), imgList = box.getElementsByTagName("img"), mark = document.getElementById("mark");
+    var oIm=mark.getElementsByTagName("img")[0];
+    box.onmouseover = function (e) {
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+
+        var mark = document.getElementById("mark");
+        mark.style.display = "block";
+
+        oIm.src= e.target.getAttribute("bigImg");
+        mark.style.left = e.clientX - this.offsetLeft + 5 + "px";
+        mark.style.top = e.clientY - this.offsetTop + 5 + "px";
+
+
+    };
+    box.onmousemove = function (e) {
+        e = e || window.event;
+        //e.target = e.target || e.srcElement;
+        var mark = document.getElementById("mark");
+
+        mark.style.left = e.clientX - this.offsetLeft + 5 + "px";
+        mark.style.top = e.clientY - this.offsetTop + 5 + "px";
+
+    };
+    box.onmouseout = function (e) {
+        e = e || window.event;
+        var mark = document.getElementById("mark");
+        mark.style.display = "none";
+    };
+</script>

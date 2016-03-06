@@ -1,0 +1,46 @@
+@charset "utf-8";
+body, div, table, thead, tr, th, tbody, td {
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+    -webkit-user-select: none;
+}
+
+.box {
+    margin: 20px auto;
+    width: 500px;
+    /*border: 1px solid #999;*/
+    /*border-radius: 10px;*/
+    box-shadow: 3px 3px 10px 0 #999;
+}
+#tab{
+    font-weight: bold;
+    background:#f3508d url("../img/03.jpg");
+}
+#tab thead tr {
+
+    height: 35px;
+    line-height: 35px;
+}
+
+#tab thead tr th {
+    width: 125px;
+    background:#b5cfd2 url("../img/01.jpg");
+}
+
+#tab thead tr th.cursor {
+    cursor: pointer;
+}
+
+#tab tbody tr {
+    height: 30px;
+    line-height: 30px;
+
+}
+
+#tab tbody tr td {
+    text-align: center;
+    background:#dcddc0 url("../img/02.jpg");
+}
+

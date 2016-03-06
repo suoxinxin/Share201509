@@ -1,0 +1,36 @@
+body,div,thead,tbody,tr,th,td{
+    margin:0;
+    padding:0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    -webkit-user-select:none;
+}
+#box{
+    width:400px;
+    padding:20px;
+    margin:50px auto;
+    /*background-color: palegreen;*/
+    border:1px solid blueviolet;
+    -moz-border-bottom-colors: cadetblue red yellow;
+    border-radius: 10px;
+    box-shadow: 3px 5px 5px 0 blue;
+}
+#tab thead tr th{
+    height:35px;
+    line-height: 35px;
+    width:100px;
+    background-color: bisque;
+}
+#tab thead tr th.cursor{
+    cursor: pointer;
+}
+#tab tbody tr{
+    height:35px;
+    line-height: 35px;
+}
+#tab tbody tr td{
+    text-align: center;
+}
+#tab tbody tr.bg{
+    background-color: #bdd6e8;
+}

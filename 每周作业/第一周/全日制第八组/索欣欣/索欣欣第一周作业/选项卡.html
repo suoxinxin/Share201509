@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        ul, li {
+            list-style: none;
+
+        }
+
+        #tab {
+            margin: 20px auto;
+            width: 500px;
+        }
+
+        #tab ul {
+            /*overflow: hidden; 清除子元素的浮动对自己的影响*/
+            position: relative;
+            top: 1px;
+            margin: 0 auto;
+        }
+
+        #tab ul li {
+            float: left;
+            margin-right: 10px;
+            width: 100px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border: 1px solid green;
+            cursor: pointer;
+
+        }
+
+        #tab ul li.select {
+            background: yellow;
+            border-bottom: 1px solid yellow;
+        }
+
+        #tab div {
+            display: none;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            border: 1px solid green;
+            clear: both; /*清除上面元素的浮动对自己的影响*/
+        }
+
+        #tab div.select {
+            display: block;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select">电影</li>
+        <li>电视剧</li>
+        <li>音乐</li>
+    </ul>
+    <div class="select">夏洛特烦恼</div>
+    <div>芈月传</div>
+    <div> 蜀绣</div>
+</div>
+</body>
+<script>
+    var oTab = document.getElementById("tab");
+    var oLis = oTab.getElementsByTagName("li");
+    var oDivs = oTab.getElementsByTagName("div");
+    function tabChange(curLi) {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = null;
+            oDivs[i].className = null;
+        }
+        oLis[curLi].className = "select";
+        oDivs[curLi].className = "select";
+    }
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].zhuFeng = i;//->每一次循环给每一个li增加一个叫做zhuFeng的自定义的属性名,属性值存储的是当前li的索引
+        oLis[i].onclick = function () {
+            //this->当前点击的这个li,你点击的是第二个li,那么这个this就是我们的第二个li
+            tabChange(this.zhuFeng);
+        };
+    }
+
+    //使用闭包的方式解决
+//   闭包1：
+// for (var i = 0; i < oLis.length; i++) {
+//        ~function (i) {
+//            oLis[i].onclick = function () {
+//                tabChange(i);
+//            };
+//        }(i);
+//    }
+//
+//   闭包2：
+// for (var i = 0; i < oLis.length; i++) {
+//        oLis[i].onclick = (function (i) {
+//            return function () {
+//                tabChange(i);
+//            };
+//        })(i);
+//    }
+
+</script>
+</html>

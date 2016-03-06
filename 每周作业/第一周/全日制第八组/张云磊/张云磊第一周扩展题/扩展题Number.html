@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //借鉴而来
+    Number.prototype.plus = function (n) {
+        n = Number(n);
+        return this + n;
+    }
+    Number.prototype.minus = function (n) {
+        n = Number(n);
+        return this - n;
+    }
+    console.log((5).plus(3).minus(2));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页定位导航效果</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #ul1 {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 35px;
+            margin-top: -125px;
+            width: 30px;
+        }
+
+        #ul1 li {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px dashed #999;
+            cursor: pointer;
+        }
+
+        #box {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        #item {
+            height: 600px;
+            background: lightskyblue;
+        }
+
+        .item0 {
+            margin: 10px 0;
+            height: 600px;
+            background: yellow;
+        }
+
+        .item {
+            margin: 10px 0;
+            height: 580px;
+            background: pink;
+        }
+
+        .item span {
+            display: block;
+            margin: 10px;
+        }
+
+        #item9 {
+            margin-bottom: 500px;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+    <li>7F</li>
+    <li>8F</li>
+    <li>9F</li>
+</ul>
+<div id="box">
+    <div id="item">
+        <span>全部分类</span>
+    </div>
+    <div id="item0" class="item0">
+        <span>特购产品</span>
+    </div>
+    <div id="item1" class="item">
+        <span>服装鞋包</span>
+    </div>
+    <div id="item2" class="item">
+        <span>个护美妆</span>
+    </div>
+    <div id="item3" class="item">
+        <span>手机通讯</span>
+    </div>
+    <div id="item4" class="item">
+        <span>家用电器</span>
+    </div>
+    <div id="item5" class="item">
+        <span>电脑数码</span>
+    </div>
+    <div id="item6" class="item">
+        <span>运动健身</span>
+    </div>
+    <div id="item7" class="item">
+        <span>居家生活</span>
+    </div>
+    <div id="item8" class="item">
+        <span>母婴玩具</span>
+    </div>
+    <div id="item9" class="item">
+        <span>食品保健</span>
+    </div>
+</div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var box = document.getElementById("box");
+    var oDivs = box.getElementsByTagName("div");
+    var oLis = oUl.getElementsByTagName("li");
+    var ary = ["服装", "美妆", "手机", "家电", "数码", "运动", "居家", "母婴", "食品"];
+    var res = ["1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F"];
+    for (var i = 0; i < oLis.length; i++) {
+        ~function (i) {
+            var val = oLis[i].innerHTML;
+            oLis[i].onmouseover = function () {
+                this.innerHTML = ary[i];
+                this.style.backgroundColor = "pink";
+                this.style.color = "white";
+            };
+            oLis[i].onmouseout = function () {
+                this.innerHTML = val;
+                this.style.backgroundColor = "";
+                this.style.color = "black";
+            };
+            oLis[i].onclick = function () {
+                var target = utils.offset(oDivs[i + 2]).top - 10;
+                var curT = utils.win("scrollTop");
+                var step = ((curT - target) / 500) * 10;
+                var timer = window.setInterval(function () {
+                    if ((step >= 0 && curT <= target) || (step < 0 && curT >= target)) {
+                        utils.win("scrollTop", target);
+                        window.onscroll = scrollMove;
+                        window.clearInterval(timer);
+                        return;
+                    }
+                    curT -= step;
+                    utils.win("scrollTop", curT);
+                }, 10);
+            };
+        }(i);
+    }
+    var position = 0;
+    function scrollMove() {
+        var winT = utils.win("scrollTop") + utils.win("clientHeight");
+        if (utils.offset(oDivs[2]).top <= winT) {
+            oUl.style.display = "block";
+        } else {
+            oUl.style.display = "none";
+        }
+        var curT = utils.win("scrollTop");
+        var basePosition = 1200;
+        var height = 580;
+        var i = parseInt((curT - basePosition) / height);
+
+        if (position <= 0 && (curT - position) >= 1200) {
+            oLis[i].innerHTML = ary[i];
+            position = curT;
+        }
+        if (position > 0 && (curT - position) >= 580) {
+            oLis[i - 1].innerHTML = res[i - 1];
+            oLis[i].innerHTML = ary[i];
+            position = curT;
+        }
+        if (position > 0 && (position - curT) >= 580) {
+            if (i < res.length) {
+                oLis[i + 1].innerHTML = res[i + 1];
+            }
+            oLis[i].innerHTML = ary[i];
+            position = curT;
+        }
+    }
+    window.onscroll = scrollMove;
+</script>
+</body>
+</html>

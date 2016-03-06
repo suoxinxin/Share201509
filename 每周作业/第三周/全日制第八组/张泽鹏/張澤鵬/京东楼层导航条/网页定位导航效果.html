@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页定位导航效果</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #ul1 {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 35px;
+            margin-top: -125px;
+            width: 30px;
+        }
+
+        #ul1 li {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px dashed #999;
+            cursor: pointer;
+            color: greenyellow;
+        }
+
+        #box {
+            width: 1200px;
+            margin: 10px auto;
+        }
+
+        #item {
+            height: 600px;
+            background: url("imges/19.jpg")no-repeat center center;
+            background-size: 100%;
+            color: greenyellow;
+        }
+
+        .item0 {
+            margin: 10px 0;
+            height: 600px;
+            background: url("imges/17.jpg")no-repeat center center;
+            background-size: 100%;
+            color: greenyellow;
+        }
+
+        .item {
+            margin: 10px 0;
+            height: 680px;
+        }
+
+        #item1 {
+            background: url("imges/2.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item2 {
+            background: url("imges/5.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item3 {
+            background: url("imges/16.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item4 {
+            background: url("imges/10.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item5 {
+            background: url("imges/7.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item6 {
+            background: url("imges/24.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item7 {
+            background: url("imges/21.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item8 {
+            background: url("imges/12.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        #item9 {
+            background: url("imges/3.jpg") no-repeat center center;
+            background-size: 100%;
+        }
+
+        .item span {
+            display: block;
+            margin: 10px;
+            color: gold;
+        }
+
+        #item9 {
+            margin-bottom: 500px;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+    <li>7F</li>
+    <li>8F</li>
+    <li>9F</li>
+</ul>
+<div id="box">
+    <div id="item">
+        <span>雷霆咆哮</span>
+    </div>
+    <div id="item0" class="item0">
+        <span>圣枪游侠 卢锡安</span>
+    </div>
+    <div id="item1" class="item">
+        <span>放逐之刃</span>
+    </div>
+    <div id="item2" class="item">
+        <span>德玛西亚之翼</span>
+    </div>
+    <div id="item3" class="item">
+        <span>无双剑姬</span>
+    </div>
+    <div id="item4" class="item">
+        <span>九尾妖狐</span>
+    </div>
+    <div id="item5" class="item">
+        <span>圣枪游侠</span>
+    </div>
+    <div id="item6" class="item">
+        <span>疾风剑豪</span>
+    </div>
+    <div id="item7" class="item">
+        <span>曙光女神</span>
+    </div>
+    <div id="item8" class="item">
+        <span>泳池派对</span>
+    </div>
+    <div id="item9" class="item">
+        <span>天启者</span>
+    </div>
+</div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var box = document.getElementById("box");
+    var oDivs = box.getElementsByTagName("div");
+    var oLis = oUl.getElementsByTagName("li");
+    var ary = ["瑞文", "奎因", "剑姬", "阿狸", "圣枪", "剑豪", "日女", "盲僧", "天启 "];
+    var res = ["1F", "2F", "3F", "4F", "5F", "6F", "7F", "8F", "9F"];
+    for (var i = 0; i < oLis.length; i++) {
+        ~function (i) {
+            //获取开始的时候li的内容
+            var val = oLis[i].innerHTML;
+            oLis[i].onmouseover = function () {
+                this.innerHTML = ary[i];
+                this.style.backgroundColor = "#C81623";
+                this.style.color = "gold";
+            };
+            oLis[i].onmouseout = function () {
+                this.innerHTML = val;
+                this.style.backgroundColor = "";
+                this.style.color = "greenyellow ";
+            };
+            oLis[i].onclick = function () {
+                var target = utils.offset(oDivs[i + 2]).top - 10;
+                var curT = utils.win("scrollTop");
+                var step = ((curT - target) / 500) * 10;
+                var timer = window.setInterval(function () {
+                    if ((step >= 0 && curT <= target) || (step < 0 && curT >= target)) {
+                        utils.win("scrollTop", target);
+                        window.onscroll = scrollMove;
+                        window.clearInterval(timer);
+                        return;
+                    }
+                    curT -= step;
+                    utils.win("scrollTop", curT);
+                }, 10);
+            };
+        }(i);
+    }
+    var position = 0;
+    function scrollMove() {
+        var winT = utils.win("scrollTop") + utils.win("clientHeight");
+        if (utils.offset(oDivs[2]).top <= winT) {
+            oUl.style.display = "block";
+        } else {
+            oUl.style.display = "none";
+        }
+        var curT = utils.win("scrollTop");
+        var basePosition = 1200;
+        var height = 690;
+        var i = parseInt((curT - basePosition) / height);
+
+        if (position <= 0 && (curT - position) >= 1200) {
+            oLis[i].innerHTML = ary[i];
+            position = curT;
+        }
+        if (position > 0 && (curT - position) >= 680) {
+            oLis[i - 1].innerHTML = res[i - 1];
+            oLis[i].innerHTML = ary[i];
+            position = curT;
+        }
+        if (position > 0 && (position - curT) >= 680) {
+            if (i < res.length) {
+                oLis[i + 1].innerHTML = res[i + 1];
+            }
+            oLis[i].innerHTML = ary[i];
+            position = curT;
+        }
+    }
+    window.onscroll = scrollMove;
+</script>
+</body>
+</html>

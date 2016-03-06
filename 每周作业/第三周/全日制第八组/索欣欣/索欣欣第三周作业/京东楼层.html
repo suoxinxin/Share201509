@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>京东导航</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #ul1 {
+            position: fixed;
+            top: 250px;
+            left: 60px;
+            width: 30px;
+        }
+
+        #ul1 li {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            border-bottom: 1px dashed #999;
+            cursor: pointer;
+        }
+
+        #box {
+            width: 1000px;
+            margin: 0 auto;
+        }
+
+        #box div {
+            margin: 10px 0;
+            height: 300px;
+            background: pink;
+        }
+
+        #box div span {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+</ul>
+<div id="box">
+    <div>
+        <span>服装</span>
+    </div>
+    <div>
+        <span>美妆</span>
+    </div>
+    <div>
+        <span>手机</span>
+    </div>
+    <div>
+        <span>家电</span>
+    </div>
+    <div>
+        <span>数码</span>
+    </div>
+    <div>
+        <span>运动</span>
+    </div>
+</div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var box = document.getElementById("box");
+    var oDivs = box.getElementsByTagName("div");
+    var oLis = oUl.getElementsByTagName("li");
+    var ary = ["服装", "美妆", "手机", "家电", "数码", "运动"];
+    //    var res = ["1F", "2F", "3F", "4F", "5F", "6F"];
+//    var ary1 = ["50px", "350px", "650px", "950px", "1250px"];
+
+    for (var i = 0; i < oLis.length; i++) {
+        //js写左侧li中样式
+        ~function (i) {
+            var val = oLis[i].innerHTML;
+            oLis[i].onmouseover = function () {
+                this.innerHTML = ary[i];
+                this.style.backgroundColor = "red";
+                this.style.color = "white";
+                document.documentElement.scrollTop = utils.offset(oDivs[i]).top-10;
+                document.body.scrollTop = utils.offset(oDivs[i]).top-10;
+            };
+
+                oLis[i].onmouseout = function () {
+                    this.innerHTML = val;
+                    this.style.backgroundColor = "";
+                    this.style.color = "black";
+                }
+        }(i);
+    }
+
+</script>
+</body>
+</html>
+

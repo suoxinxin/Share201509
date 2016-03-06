@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            -webkit-user-select: none;
+        }
+
+        ul {
+            position: fixed;
+            top: 30%;
+            left: 50px;
+            width: 30px;
+            /*border:1px solid red;*/
+        }
+
+        ul li {
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            text-align: center;
+            color: #6f6f6f;
+            border-bottom: 1px dashed silver;
+            cursor: pointer;
+        }
+
+        ul li:hover {
+            color: white;
+            background: #b61d1d;
+        }
+
+        .box {
+            margin: 50px auto;
+            width: 1100px;
+            height: 500px;
+            border: 1px solid silver;
+        }
+
+        .box h2 {
+            border-bottom: 1px solid #b61d1d;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>1F</li>
+    <li>2F</li>
+    <li>3F</li>
+    <li>4F</li>
+    <li>5F</li>
+    <li>6F</li>
+    <li>7F</li>
+    <li>8F</li>
+    <li>9F</li>
+    <li>10F</li>
+</ul>
+<div class="box"><h2>全部商品分类</h2></div>
+<div class="box"><h2>京东特色购</h2></div>
+<div class="box"><h2>服装</h2></div>
+<div class="box"><h2>美妆</h2></div>
+<div class="box"><h2>手机</h2></div>
+<div class="box"><h2>家电</h2></div>
+<div class="box"><h2>数码</h2></div>
+<div class="box"><h2>运动</h2></div>
+<div class="box"><h2>居家</h2></div>
+<div class="box"><h2>母婴</h2></div>
+<div class="box"><h2>食品</h2></div>
+<div class="box"><h2>图书</h2></div>
+
+<script charset="utf-8" src="js/utils.js"></script>
+<script>
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    var oDiv = document.getElementsByTagName("div");
+    var oUl1 = document.getElementById("ul1");
+
+    var ary = ["服装", "美妆", "手机", "家电", "数码", "运动", "居家", "母婴", "食品", "图书"];
+    for (var i = 0; i < oLis.length; i++) {
+
+        ~function (i) {
+            var val = oLis[i].innerHTML;
+            oLis[i].onmouseover = function () {
+                oLis[i].innerHTML = ary[i];
+            };
+            oLis[i].onmouseout = function () {
+                this.innerHTML = val;
+            };
+            oLis[i].onclick = function () {
+//                var winT = document.documentElement.scrollTop || document.body.scrollTop;
+//                var curT = utils.offset(oDiv[i + 2]).top;
+//                var step = ((winT - curT) / 500) * 10;
+                var timer = window.setInterval(function () {
+
+                    document.documentElement.scrollTop = utils.offset(oDiv[i + 2]).top;
+                    document.body.scrollTop = utils.offset(oDiv[i + 2]).top;
+
+                    window.clearInterval(timer);
+                }, 10);
+
+            }
+        }(i)
+
+    }
+
+    function scrollMove() {
+        var winT = ((document.documentElement.scrollTop || document.body.scrollTop) + (document.documentElement.clientHeight || document.body.clientHeight));
+        if (utils.offset(oDiv[2]).top <= winT) {
+            oUl1.style.display = "block";
+        } else {
+            oUl1.style.display = "none";
+        }
+    }
+
+    window.onscroll = scrollMove;
+
+
+</script>
+</body>
+</html>

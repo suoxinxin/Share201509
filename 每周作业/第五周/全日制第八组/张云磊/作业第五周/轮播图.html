@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li, a {
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        ul, li {
+            list-style: none;
+        }
+
+        .outer {
+            position: relative;
+            margin: 100px auto;
+            width: 1226px;
+            height: 460px;
+            box-shadow: 3px 3px 10px 0 #ccc;
+            overflow: hidden;
+        }
+
+        .inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width:7356px ;
+            height: 460px;
+        }
+
+        .inner div {
+            float: left;
+            width: 1226px;
+            height: 460px;
+        }
+
+        .inner div img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tip {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        .tip li {
+            float: left;
+            margin-left: 5px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: silver;
+            cursor: pointer;
+        }
+
+        .tip li:hover {
+            background: white;
+        }
+
+        .tip li.bg {
+            background: white;
+        }
+
+        .outer .btn{
+            position: absolute;
+            top:50%;
+            width:40px;
+            height:69px;
+            background: url("img/icon-slides.png") no-repeat;
+        }
+        .outer .btnLeft {
+            left: 235px;
+            background-position: -84px 0;
+        }
+        .outer .btnLeft:hover{
+            background-position: 0 0;
+        }
+        .outer .btnRight {
+            right: 0;
+            background-position: -124px 0;
+        }
+        .outer .btnRight:hover{
+            background-position: -42px 0;
+        }
+
+        .outer .outerLeft{
+            position: absolute;
+            top:0;
+            left:0;
+            padding:20px 0;
+            width:235px;
+            height:460px;
+            background: black;
+            opacity:0.8;
+            filter:alpha(opacity=800);
+        }
+        .outer .outerLeft li{
+            padding:0 30px;
+            height:42px;
+            line-height: 42px;
+            font-size: 14px;
+            opacity:1;
+        }
+        .outer .outerLeft li a{
+            display: block;
+            color:white;
+            opacity:1;
+        }
+        .outer .outerLeft li:hover{
+            background: #ff6700;
+            opacity:1;
+        }
+
+        .outer .outerLeft li div{
+            display: none;
+            position: absolute;
+            top:0;
+            left:235px;
+            width:794px;
+            height:458px;
+            border:1px solid #e0e0e0;
+            background: white;
+            z-index: 100;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="outer">
+    <div class="inner" id="inner">
+        <div><img src="img/1.jpg" alt=""/></div>
+        <div><img src="img/2.jpg" alt=""/></div>
+        <div><img src="img/3.jpg" alt=""/></div>
+        <div><img src="img/4.jpg" alt=""/></div>
+        <div><img src="img/5.jpg" alt=""/></div>
+        <div><img src="img/1.jpg" alt=""/></div>
+    </div>
+    <ul class="tip" id="tip">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <a href="javascript:;" class="btn btnLeft" id="btnLeft"></a>
+    <a href="javascript:;" class="btn btnRight" id="btnRight"></a>
+
+    <ul class="outerLeft">
+        <li id="li1">
+            <a href="javascript:;">手机 平板 电话卡</a>
+            <div class="phone" id="phone">
+                <!--<ul class="phoneSelect">-->
+                    <!--<li>-->
+                        <!--<img src="img2/minote.jpg" alt=""/>-->
+                        <!--<p>小米Note</p>-->
+                        <!--<a href="">选购</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            </div>
+        </li>
+        <li id="li2">
+            <a href="javascript:;">电视 盒子</a>
+            <div class="phone"></div>
+        </li>
+        <li id="li3"><a href="javascript:;">路由器 智能硬件</a><div class="phone"></div></li>
+        <li id="li4"><a href="javascript:;">移动电源 插线板</a><div class="phone"></div></li>
+        <li><a href="javascript:;">耳机 音箱</a><div class="phone"></div></li>
+        <li><a href="javascript:;">电池 储存卡</a><div class="phone"></div></li>
+        <li><a href="javascript:;">保护套 后盖</a><div class="phone"></div></li>
+        <li><a href="javascript:;">贴膜 其他配件</a><div class="phone"></div></li>
+        <li><a href="javascript:;">米兔 服装</a><div class="phone"></div></li>
+        <li><a href="javascript:;">箱包 其他周边</a><div class="phone"></div></li>
+    </ul>
+
+</div>
+
+<script charset="UTF-8" src="js/animate.js"></script>
+<script charset="UTF-8" src="js/banner.js"></script>
+</body>
+</html>

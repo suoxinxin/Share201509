@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>拖拽jQuery</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #box {
+            position: absolute;
+            /*top:50%;*/
+            /*left: 50%;*/
+            /*margin-left: -100px;*/
+            /*margin-top: -100px;*/
+            width: 200px;
+            height:200px;
+            background: deepskyblue;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript">
+    var winH = $(window).height(), winW = $(window).width();
+    var $box = $("#box");
+    $box.css("top", (winH - $box.outerHeight()) / 2);
+    $box.css("left", (winW - $box.outerWidth()) / 2);
+    var _this = null;
+    function fn1() {
+        move.call(_this);
+    }
+    function fn2() {
+        up.call(_this);
+    }
+    function down(e) {
+        e = e || window.event;
+        if (this.setCapture) {
+            this.setCapture();
+            $mark.bind("mousemove", move).bind("mouseup", up);
+        } else {
+            _this = this;
+            $(document).bind("mousemove",fn1).bind("mouseup",fn2);
+        }
+        $(this).attr({
+            "mouseX": e.clientX,
+            "mouseY": e.clientY,
+            "boxL": parseFloat($box.css("left")),
+            "boxT": parseFloat($box.css("top"))
+        });
+    }
+    function move(e) {
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        var curL = e.clientX - parseFloat($(this).attr("mouseX")) + parseFloat($(this).attr("boxL"));
+        var curT = e.clientY - parseFloat($(this).attr("mouseY")) + parseFloat($(this).attr("boxT"));
+        var minL = 0, minT = 0, maxL = winW - $box.outerWidth(), maxT = winH - $box.outerHeight();
+        curL = curL <= minL ? minL : (curL >= maxL ? maxL : curL);
+        curT = curT <= minT ? minT : (curT >= maxT ? maxT : curT);
+        $box.css("left", curL);
+        $box.css("top", curT);
+    }
+    function up(e) {
+        if (this.releaseCapture) {
+            this.releaseCapture();
+            $box.unbind("mousemove", move).unbind("mouseup", up);
+        } else {
+            $(document).unbind("mousemove",move).unbind("mouseup",up);
+        }
+        $(this).attr({mouseX: null, mouseY: null, boxL: null, boxT: null});
+    }
+    $box.bind("mousedown", down);
+    <!-- -->
+//    var $box = $("#box");
+//    var $boxOffset = $box.offset();
+//    var boxW=$box.attr("width" );var boxH=$box.attr("height");
+//    function down(e) {
+//        if ($(this).setCapture) {
+//            $(this).setCapture();
+//            $(this).bind("mousemove",move);
+//            $(this).bind("mouseup",up);
+//        } else {
+//            var _this = $(this);
+//            $(document).bind("mousemove",function (e) {
+//                move.call(_this, e);
+//            });
+//            $(document).bind("mouseup", function (e) {
+//                up.call(_this, e);
+//            })
+//        }
+//        e = e || window.event;
+//        $(this)["mouseX"] = e.clientX;
+//        $(this)["mouseY"] = e.clientY;
+//        $(this)["boxL"] = parseFloat($boxOffset.left);
+//        $(this)["boxT"] = parseFloat($boxOffset.top);
+//    }
+//
+//    function move(e) {
+//        e = e || window.event;
+//        var curL = (e.clientX - $(this)["mouseX"]) + $(this)["boxL"];
+//        var curT = (e.clientY - $(this)["mouseY"]) + $(this)["boxT"];
+//        var minT = 0, minL = 0, maxT = (document.documentElement.clientHeight || document.body.clientHeight) - boxH, maxL = (document.documentElement.clientWidth || document.body.clientWidth) - boxW;
+//        var left= 0,top=0;
+//        if (curL < minL) {
+//           left = minL;
+//        } else if (curL > maxL) {
+//            left = maxL;
+//        } else {
+//         left = curL ;
+//        }
+//
+//        if (curT < minT) {
+//            top = minT ;
+//        } else if (curT > maxT) {
+//            top = maxT ;
+//        } else {
+//            top = curT ;
+//        }
+//        $box.css({left:left,top:top});
+//    }
+//    function up(e) {
+//        if ($(this).releaseCapture) {
+//            $(this).releaseCapture();
+//            $(this).bind("mousemove" , null);
+//            $(this).bind("mouseup" , null);
+//        } else {
+//            $(document).bind("mousemove" , null);
+//            $(document).bind("mouseup" , null);
+//        }
+//
+//        $(this)["mouseX"] = null;
+//        $(this)["mouseY"] = null;
+//        $(this)["boxL"] = null;
+//        $(this)["boxT"] = null;
+//    }
+//
+//    $box.bind("mousedown",down);
+
+
+</script>

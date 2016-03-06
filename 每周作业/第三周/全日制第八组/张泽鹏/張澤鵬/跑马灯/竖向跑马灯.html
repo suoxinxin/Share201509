@@ -1,0 +1,122 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <title></title>
+    <style type="text/css">
+        body, div, ul, ol {
+            margin: 0;
+            padding: 0;
+            font-family: cursive;
+            font-size: 18px;
+            overflow: auto
+        }
+
+        #tip {
+            width: 31px;
+            height: 550px;
+            margin: 10px;
+            border: 3px dashed aqua;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #tip, p {
+            width: 31px;
+            height: 550px;
+            float: left;
+            overflow: hidden;
+        }
+
+        #zi {
+            width: 31px;
+            height: 550px;
+            margin: 10px;
+            border: 3px dashed aqua;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #zi, ol {
+            width: 31px;
+            height: 550px;
+            float: right;
+            overflow: hidden;
+        }
+
+        #hu {
+            margin: 100px auto 0;
+            padding: 0 5px 0 40px;
+            width: 915px;
+            height: 31px;
+            line-height: 31px;
+            background: url("img/gg.gif") no-repeat center center;
+        }
+
+        #hu ul {
+            width: 915px;
+            height: 31px;
+            line-height: 31px;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="tip">
+    <p>
+        如果你想玩坦克的雷克赛,那么就选择正常系的天赋,技能加点R>Q>W>E。
+    </p>
+</div>
+<div id="hu">
+    <ul>
+        如果你想玩秒杀流的雷克赛,那么就选择攻击系的天赋,技能加点R>Q>E>W。
+
+    </ul>
+</div>
+<div id="zi">
+    <ol>
+        打团的时候多用几次w打控制，骚扰对面后排C位输出，帮助队友吸收伤害即可。
+    </ol>
+</div>
+<script>
+    /*1、*/
+    var oTip = document.getElementById("tip").getElementsByTagName("p")[0];
+    var s = oTip.innerHTML;
+    var timer = window.setInterval(function () {
+        var start = oTip.scrollTop;
+        oTip.scrollTop += 1;
+        var end = oTip.scrollTop;
+        if (start === end) {
+            oTip.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + s;
+        }
+    }, 15);
+
+    /*2、*/
+    var oHu = document.getElementById("hu")
+            .getElementsByTagName("ul")[0];
+    var a = oHu.innerHTML;
+    var huzi = window.setInterval(function () {
+        var vor = oHu.scrollLeft;
+        oHu.scrollLeft += 1;
+        var eevr = oHu.scrollLeft;
+        if (vor === eevr) {
+            oHu.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + a;
+        }
+    }, 15);
+
+    /*3、*/
+    var oZi = document.getElementById("zi")
+            .getElementsByTagName("ol")[0];
+    var b = oZi.innerHTML;
+    var long = window.setInterval(function () {
+        var wer = oZi.scrollTop;
+        oZi.scrollTop += 1;
+        var gfty = oZi.scrollTop;
+        if (wer === gfty) {
+            oZi.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + b;
+        }
+    }, 15);
+</script>
+</body>
+</html>

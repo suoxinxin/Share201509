@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        div, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 16px;
+        }
+
+        #tab {
+            margin: 50px auto;
+            width: 500px;
+
+        }
+
+        ul {
+            overflow: hidden;
+            position: relative;
+            top: 1px;
+
+        }
+
+        ul li {
+            float: left;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            border: 1px solid silver;
+            text-align: center;
+            margin: 0 20px;
+        }
+
+        #tab div {
+            display: none;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            border: 1px solid silver;
+        }
+
+        ul li.select {
+            border-bottom:1px solid #0dad51;
+            background: #0dad51;
+        }
+
+        #tab div.select {
+            display: block;
+            background: #0dad51;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select">音乐</li>
+        <li>电影</li>
+        <li>电视剧</li>
+    </ul>
+    <div class="select">样 YOUNG</div>
+    <div>寻龙诀</div>
+    <div>芈月传</div>
+</div>
+</body>
+</html>
+<script>
+    var oTab = document.getElementById("tab");
+    var oLis = oTab.getElementsByTagName("li");
+    var oDivs = oTab.getElementsByTagName("div");
+    function tabChange(curIndex) {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = null;
+            oDivs[i].className = null;
+        }
+        oLis[curIndex].className = "select";
+        oDivs[curIndex].className = "select";
+    }
+    for (var i = 0; i < oLis.length; i++) {
+        ~function (i) {
+            oLis[i].onclick = function () {
+                tabChange(i);
+            };
+        }(i);
+    }
+
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].onclick = (function (i) {
+            return function () {
+                tabChange(i);
+            };
+        })(i);
+    }
+
+</script>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .box {
+            position: absolute;
+            background: #f08080;
+            height: 300px;
+            width: 300px;
+        }
+
+        .mark {
+            padding: 0 20px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+            background: #32cd32;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <h2 class="mark" id="mark">珠峰培训登录</h2>
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script>
+    var winH = $(window).height(), winW = $(window).width();
+    var $box = $("#box"), $mark = $("#mark");
+    $box.css("top", (winH - $box.outerHeight()) / 2);
+    $box.css("left", (winW - $box.outerWidth()) / 2);
+    var _this = null;
+    function fn1() {
+        move.call(_this);
+    }
+    function fn2() {
+        up.call(_this);
+    }
+    function down(e) {
+        e = e || window.event;
+        if (this.setCapture) {
+            this.setCapture();
+            $mark.bind("mousemove", move).bind("mouseup", up);
+        } else {
+            _this = this;
+            $(document).bind("mousemove",fn1).bind("mouseup",fn2);
+        }
+        $(this).attr({
+            "mouseX": e.clientX,
+            "mouseY": e.clientY,
+            "boxL": parseFloat($box.css("left")),
+            "boxT": parseFloat($box.css("top"))
+        });
+    }
+    function move(e) {
+        e = e || window.event;
+        e.target = e.target || e.srcElement;
+        var curL = e.clientX - parseFloat($(this).attr("mouseX")) + parseFloat($(this).attr("boxL"));
+        var curT = e.clientY - parseFloat($(this).attr("mouseY")) + parseFloat($(this).attr("boxT"));
+        var minL = 0, minT = 0, maxL = winW - $box.outerWidth(), maxT = winH - $box.outerHeight();
+        curL = curL <= minL ? minL : (curL >= maxL ? maxL : curL);
+        curT = curT <= minT ? minT : (curT >= maxT ? maxT : curT);
+        $box.css("left", curL);
+        $box.css("top", curT);
+    }
+    function up(e) {
+        if (this.releaseCapture) {
+            this.releaseCapture();
+            $mark.unbind("mousemove", move).unbind("mouseup", up);
+        } else {
+            $(document).unbind("mousemove",move).unbind("mouseup",up);
+        }
+        $(this).attr({mouseX: null, mouseY: null, boxL: null, boxT: null});
+    }
+    $mark.bind("mousedown", down);
+</script>
+
+</body>
+</html>

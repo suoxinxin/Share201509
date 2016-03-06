@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 微软雅黑;
+            font-size: 14px;
+            -webkit-user-select: none;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .box {
+            position: absolute;
+            background: #f08080;
+            height: 300px;
+            width: 300px;
+        }
+
+        .mark {
+            padding: 0 20px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            color: #fff;
+            background: #32cd32;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <h2 class="mark" id="mark">珠峰培训登录</h2>
+</div>
+<script>
+    var winH = document.documentElement.clientHeight || document.body.clientHeight;
+    var winW = document.documentElement.clientWidth || document.body.clientWidth;
+    var oBox = document.getElementById("box");
+    var mark = document.getElementById("mark");
+    oBox.style.top = ((document.documentElement.clientHeight || document.body.clientHeight) - box.offsetHeight) / 2 + "px";
+    oBox.style.left = ((document.documentElement.clientWidth || document.body.clientWidth) - box.offsetWidth) / 2 + "px";
+    function down(e) {
+        e = e || window.event;
+        if (this.setCapture) {
+            this.setCapture();
+            this.onmousemove = move;
+            this.onmouseup = up;
+        } else {
+            var _this = this;
+            //绑定在body上也是不可以的
+            document.onmousemove = function (e) {
+                move.call(_this, e);
+            };
+            document.onmouseup = function (e) {
+                up.call(_this, e);
+            };
+        }
+        this.mouseX = e.clientX;
+        this.mouseY = e.clientY;
+        this.boxL = parseFloat(oBox.style.left);
+        this.boxT = parseFloat(oBox.style.top);
+        // console.log(this.mouseX,this.mouseY,this.boxL,this.boxT);
+    }
+    function move(e) {
+        e = e || window.event;
+        //e.clientX不带单位，oBox.style.left带单位
+        e.target = e.target || e.srcElement;
+        var curL = e.clientX - this.mouseX + this.boxL;
+        var curT = e.clientY - this.mouseY + this.boxT;
+        var minL = 0, minT = 0, maxL = winW - oBox.offsetWidth, maxT = winH - oBox.offsetHeight;
+        curL = curL <= minL ? minL : (curL >= maxL ? maxL : curL);
+        curT = curT <= minT ? minT : (curT >= maxT ? maxT : curT);
+        oBox.style.left = curL + "px";
+        oBox.style.top = curT + "px";
+    }
+    function up(e) {
+        if (this.releaseCapture) {
+            this.releaseCapture();
+            this.onmousemove = null;
+            this.onmouseup = null;
+        } else {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+
+    }
+    mark.onmousedown = down;
+</script>
+
+</body>
+</html>

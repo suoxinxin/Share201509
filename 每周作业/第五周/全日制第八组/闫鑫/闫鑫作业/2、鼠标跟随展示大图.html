@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+
+        img {
+            display: block;
+            border: none;
+        }
+
+        .box {
+            position: relative;
+            margin: 20px auto;
+            width: 450px;
+            height: 77px;
+        }
+
+        .box img {
+            margin-right: 10px;
+            float: left;
+            height: 75px;
+            width: 100px;
+            border: 1px solid green;
+        }
+
+        #mark {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            height: 300px;
+            width: 400px;
+            border: 1px solid blue;
+        }
+
+        #mark img {
+            margin-left: 0;
+            height: 100%;
+            width: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <img src="img/apple_1.jpg" bigImg="img/apple_1_bigger.jpg"/>
+    <img src="img/apple_2.jpg" bigImg="img/apple_2_bigger.jpg"/>
+    <img src="img/apple_3.jpg" bigImg="img/apple_3_bigger.jpg"/>
+    <img src="img/apple_4.jpg" bigImg="img/apple_4_bigger.jpg"/>
+
+    <div id="mark">
+        <img src="img/apple_1_bigger.jpg"/>
+    </div>
+</div>
+<script type="text/javascript">
+    (function () {
+        var oBox = document.getElementById("box");
+        var imgList = oBox.getElementsByTagName("img");
+        var mark = document.getElementById("mark");
+        var oImg = mark.getElementsByTagName("img")[0];
+
+        oBox.onmouseover = function (e) {
+            e = e || window.event;
+            e.target = e.target || e.srcElement;
+            var left = e.clientX - oBox.offsetLeft + 10 + "px";
+            var top = e.clientY - oBox.offsetTop + 10 + "px";
+            if (e.target.tagName.toLowerCase()==="img"&&e.target.parentNode.className === "box") {
+                mark.style.display = "block";
+                mark.style.left = left;
+                mark.style.top = top;
+                oImg.src = e.target.getAttribute("bigImg");
+            }
+        };
+        oBox.onmousemove = function (e) {
+            e = e || window.event;
+            e.target = e.target || e.srcElement;
+            if (e.target.tagName.toLowerCase()==="img"&&e.target.parentNode.className === "box"){
+                var left = e.clientX - oBox.offsetLeft + 10 + "px";
+                var top = e.clientY - oBox.offsetTop + 10 + "px";
+                mark.style.left = left;
+                mark.style.top = top;
+            }
+        };
+        oBox.onmouseout = function (e) {
+            mark.style.display = "none";
+        };
+    })();
+</script>
+</body>
+</html>

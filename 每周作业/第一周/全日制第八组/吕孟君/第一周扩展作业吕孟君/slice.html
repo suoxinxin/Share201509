@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--数组中有一个方法叫做slice,实现数组的查询:slice(n,m) slice(n) slice(0) slice() ...-->
+<!--一个slice很据传递的参数值的不一样可以实现很多种不同的操作，自己回去深入研究slice的不同操作:-->
+<!--1)一个参数都不传、传递一个参数值、传递两个参数值-->
+<!--2)参数传递的是负数、小数-->
+<!--3)n比m要大-->
+<!--...-->
+<!--要求你们自己实现一个mySlice的方法(在内置的原型上),实现和内置slice一模一样的功能操作-->
+<!--Array.prototype.mySlice=function(){//this->当前要操作的数组}-->
+<script type="text/javascript">
+    Array.prototype.mySlice = function (n, m) {
+        for (var i = 0; i < ary.length; i++) {
+            var cur = this[i];
+            var ary1=[];
+            if (n == undefined && m == undefined ) {
+                ary1[i]=ary[ary.length];
+                return ary1;
+            }
+            else if (m == undefined) {
+//                 if(isNaN(m)<0){
+//                     ary1=ary[ary.length+m];
+//                     return ary1;
+
+                 }
+            }
+        }
+    };
+    var ary = [2,3,4,5, 6,7,8,9,10];
+    var res= ary.mySlice();
+    console.log(ary);
+    console.log(res);
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    Array.prototype.mySlice = function mySlice() {
+        //1、不传参数的时候
+        var n = 0;
+        var m = this.length;
+        //2、传一到多个参数的时候
+        if (arguments.length >= 1) {
+            //判断第一个参数是不是有效数字
+            if(isNaN(arguments[0])){
+                return [];
+            }
+            //如果传进来的是小数的话，用parseInt转换一下
+            var arg = parseInt(arguments[0]);
+            //如果小于0的话，相当于是负数索引，数组的长度加上负数索引就相当于它的正向索引
+            if (arg < 0) {
+                n = this.length + arg;
+            } else {
+                n = arg;
+            }
+            if (arguments.length >= 2) {
+                //判断第二个参数是不是有效数字
+                if(isNaN(arguments[1])){
+                    return [];
+                }
+                //如果传进来的是小数的话，用parseInt转换一下
+                arg = parseInt(arguments[1]);
+                if (arg < 0) {
+                    m = this.length + arg;
+                } else {
+                    m = arg;
+                }
+            }
+        }
+        //定义一个空数组放查询到的数组，而不改变原有数组
+        var ary = [];
+        //如果n的值超过数组长度，返回这个空数组
+        if (n >= this.length) {
+            return ary;
+        }
+        //如果m的值超过数组长度，则让m=数组长度
+        if (m > this.length) {
+            m = this.length;
+        }
+        //用for循环遍历，把找到的数组放到ary中
+        for (var i = n; i < m; i++) {
+            ary[ary.length] = this[i];
+        }
+        return ary;
+    }
+    var ary = [2, 3, 4, 5, 6, 7, 8];
+
+    console.log(ary.mySlice());
+    console.log(ary);
+
+</script>
+
+</body>
+</html>

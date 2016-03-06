@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯效果</title>
+    <style type="text/css">
+        body, div, img {
+            margin: 0;
+            padding: 0;
+            font-size: 12px;
+        }
+
+        #box {
+            position: relative;
+            margin: 20px auto;
+            padding: 0 5px 0 30px;
+            width: 915px;
+            height: 31px;
+            line-height: 31px;
+            background: #FFF4DE;
+            border: 1px dashed #999;
+
+        }
+
+        #box img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            width: 25px;
+            height: 30px;
+        }
+
+        #box1 {
+            width: 915px;
+            height: 31px;
+            line-height: 31px;
+            white-space: nowrap; /*强制不换行*/
+            overflow: hidden;
+            color: #81511c;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+    <img src="img/01.png" alt="">
+    <div id="box1">
+        新版经理人论坛上线了：亲爱的用户，为了更好的提供服务，神州英才推出了全新经理人论坛平台。从即日起面向网站所有的会员朋友们开放公测！上线的社区平台，有全新的读版、读帖页样式，增添了更多的交互功能，关注用户需求和使用感受。
+
+    </div>
+</div>
+<script type="text/javascript">
+    var box = document.getElementById("box");
+    var box1 = document.getElementById("box1");
+    var val = box1.innerHTML;
+    //开启定时器
+    var timer = window.setInterval(move, 10);
+    //鼠标划过时清除定时器
+    box1.onmouseover = function () {
+        window.clearInterval(timer);
+    }
+    box1.onmouseout = function () {
+        //鼠标离开时开启定时器
+        timer = window.setInterval(move,10);
+    }
+    //向左移动的方法
+    function move(){
+        var oL = box1.scrollLeft;
+        box1.scrollLeft += 1;
+        var nL = box1.scrollLeft;
+        if (oL === nL) {
+            box1.innerHTML += "&nbsp;&nbsp;&nbsp;" + val;
+        }
+    }
+</script>
+</body>
+</html>

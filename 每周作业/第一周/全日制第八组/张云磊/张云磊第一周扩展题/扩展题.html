@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    Array.prototype.mySlice=function(n,m){
+        var newAry=[];
+        m=(typeof m=='number')?m:this.length;
+        if(n>m){
+            m=n+m;
+            n=m-n;
+            m=m-n;
+        }
+        if(n==m==null)
+        for(var i=n;i<m;i++){
+            newAry[newAry.length]=this[i];
+        }
+        return newAry;
+    };
+
+    var ary=[0,1,2,3,4,5,6,7,8,9];
+    ary.mySlice();
+    console.log(ary.mySlice(2));
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+    //基于内置类的原型添加方法，方法中的this就是我们要操作的那个实例
+    //一个都不传
+    //n=0,m=ary.length-1
+
+    //传一个
+    //n=arguments[0],m=ary.length-1
+
+    //传两个
+    //n=arguments[0],m=arguments[1]
+
+    //如果n和m不是有效的数字
+    //n不是当做0
+    //m不是返回[]-->m=0也能返回[]
+
+    //如果n和m是小数的话，向下取整
+
+    //如果n或者m是负数
+    //n=ary.length+n
+    //m=ary.length+m
+
+    //如果n>m 不处理
+
+    //如果n和m大于数组的长度：正数等于正数的最大长度，负数等于负数的最大长度
+
+
+
+
+    Array.prototype.mySlice = function mySlice() {
+        var n = 0, m = this.length, arg = arguments, newAry = [];
+        arg.length >= 1 ? n = arg[0] : null;
+        arg.length >= 2 ? m = arg[1] : null;
+        n = Math.floor(Number(n));
+        m = Math.floor(Number(m));
+        isNaN(n) ? n = 0 : null;
+        isNaN(m) ? m = 0 : null;
+        Math.abs(n) > this.length ? (n = n > 0 ? this.length : -this.length) : null;
+        Math.abs(m) > this.length ? (m = m > 0 ? this.length : -this.length) : null;
+        n < 0 ? n = this.length + n : null;
+        m < 0 ? m = this.length + m : null;
+        for (var i = n; i < m; i++) {
+            newAry[newAry.length] = this[i];
+        }
+        return newAry;
+    };
+

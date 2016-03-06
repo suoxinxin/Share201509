@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标跟随</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            display: block;
+            border: none;
+        }
+        .box{
+            position: relative;
+            margin: 20px auto;
+            width: 450px;
+        }
+        .box img{
+            float: left;
+            margin-left: 10px;
+            width: 100px;
+            height: 75px;
+            border: 1px solid #5a5a5a;
+        }
+        #mark{
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            width: 400px;
+            height: 300px;
+            border: 1px solid #3c3c3c;
+        }
+        #mark img{
+            float: inherit;
+            margin-left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box">
+    <img src="img/apple_1.jpg" bigImg="img/apple_1_bigger.jpg" />
+    <img src="img/apple_2.jpg" bigImg="img/apple_2_bigger.jpg" />
+    <img src="img/apple_3.jpg" bigImg="img/apple_3_bigger.jpg" />
+    <img src="img/apple_4.jpg" bigImg="img/apple_4_bigger.jpg" />
+    <div id="mark">
+        <img src="img/apple_1_bigger.jpg" />
+    </div>
+</div>
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var box=document.getElementById("box");
+    var mark=document.getElementById("mark");
+    var imgList=utils.children(box,"img");
+    var img1=mark.getElementsByTagName("img")[0];
+    //var boxOffset=utils.offset(box);
+    //console.log(imgList);
+
+    for(var i=0;i<imgList.length;i++){
+        var curImg=imgList[i];
+        ~function(i){
+            curImg.onmouseenter=function(e){
+                e=e||window.event;
+                //console.log(this);
+                e.target= e.target|| e.srcElement;
+                mark.style.display="block";
+                img1.src= e.target.getAttribute("bigImg");
+                mark.style.left=e.clientX-box.offsetLeft+10+"px";
+                mark.style.top=e.clientY-box.offsetTop+10+"px";
+            };
+            curImg.onmousemove=function(e){
+                e=e||window.event;
+                if(mark){
+                    mark.style.left=e.clientX-box.offsetLeft+10+"px";
+                    mark.style.top=e.clientY-box.offsetTop+10+"px";
+                }
+            };
+            curImg.onmouseleave=function(e){
+                e=e||window.event;
+                mark.style.display="none";
+            }
+        }(i);
+    }
+
+
+</script>
+</body>
+</html>

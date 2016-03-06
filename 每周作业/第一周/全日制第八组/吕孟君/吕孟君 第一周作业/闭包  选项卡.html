@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            margin: 50px auto;
+            width: 500px;
+            /*border: 1px solid red;*/
+        }
+        ul{
+            list-style: none;
+            text-align: center;
+        }
+       ul li{
+           display: inline-block;
+           width: 100px;
+           height:30px;
+           line-height: 30px;
+           background: pink;
+           cursor: pointer;
+           /*border: 1px solid ;*/
+       }
+        #box div{
+            height: 200px;
+            line-height: 200px;
+            width: 100%;
+            background: deepskyblue;
+            display: none;
+            text-align: center;
+        }
+        #box li.sel{
+            background: deepskyblue;
+        }
+        #box div.sed {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+<div id="box">
+<ul>
+    <li class="sel">选项卡一</li>
+    <li>选项卡二</li>
+    <li>选项卡三</li>
+</ul>
+<div class="sed">内容一</div>
+<div>内容二</div>
+<div>内容三</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+    var oBox=document.getElementById("box");
+    var oLis=oBox.getElementsByTagName("li");
+    var  oDivs=oBox.getElementsByTagName ("div");
+    function tabChange(curIndex) {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = null;
+            oDivs[i].className = null;
+        }
+        oLis[curIndex].className = "sel";
+        oDivs[curIndex].className = "sed";
+    }
+    for (var i = 0; i < oLis.length; i++) {
+        ~function (i) {
+            oLis[i].onclick = function () {
+                tabChange(i);
+            };
+        }(i);
+    }
+//    for (var i = 0; i < oLis.length; i++) {
+//        oLis[i].onclick = (function (i) {
+//            return function () {
+//                tabChange(i);
+//            };
+//        })(i);
+//    }
+</script>

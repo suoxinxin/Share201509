@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>mySlice</title>
+</head>
+<body>
+<script>
+    ary = [1, 12, 23, 34, 45, 52, 11];
+    var ary1 = [];
+    Array.prototype.mySlice = function mySlice(n, m) {
+//      1.  一个参数都不传时,slice()代表克隆当前数组
+        if (n == null && m == null) {
+            for (var i = 0; i < ary.length; i++) {
+                ary1[ary1.length] = ary[i];
+            }
+            return ary1;
+        }
+//        2.传递一个参数时
+        if (n >= 0 && n <= ary.length && m == null){
+            for(var i=n;i<ary.length;i++){
+                ary1[ary1.length] = ary[i];
+            }
+            return ary1;
+        }else if(n>ary.length&&m==null){
+//            return ary1;
+        }else if(n<0&&n> ary.length&&-m==null) {
+            for (var i = n + ary.length; i < ary.length; i++) {
+                ary1[ary1.length] = ary[i];
+            }return ary1;
+        }else{
+            return ary1;
+        }
+        for (var i=0; i < ary.length; i++) {
+                ary1[ary1.length] = ary[i];
+            }return ary1;
+    };
+
+        ary1 = ary.mySlice(6 );
+        console.log(ary1);
+        console.log(ary);
+
+
+</script>
+</body>
+</html>

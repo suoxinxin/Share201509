@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡3</title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 14px;
+        }
+
+        #tab {
+            margin: 20px auto;
+            width: 500px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #tab ul {
+            position: relative;
+            top: 1px;
+        }
+
+        #tab ul li {
+            float: left;
+            margin-right: 10px;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid green;
+        }
+
+        #tab ul li.select {
+            border-bottom: 1px solid powderblue;
+            background-color: powderblue;
+        }
+
+        #tab div {
+            display: none;
+            width: 500px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            border: 1px solid green;
+            clear: both;
+        }
+
+        #tab div.select {
+            display: block;
+            background-color: powderblue;
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select">电视剧</li>
+        <li>电影</li>
+        <li>综艺</li>
+    </ul>
+    <div class="select">芈月传</div>
+    <div>夏洛特烦恼</div>
+    <div>奔跑吧兄弟</div>
+</div>
+<script type="text/javascript">
+    var oTab = document.getElementById("tab");
+    var oLis = oTab.getElementsByTagName("li");
+    var oDivs = oTab.getElementsByTagName("div");
+    function tabChange(cur) {
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = null;
+            oDivs[i].className = null;
+        }
+        oLis[cur].className = "select";
+        oDivs[cur].className = "select";
+    }
+    /*for(var i=0;i<oLis.length;i++){
+     oLis[i].onmouseover=(function(i){
+     return function (){
+     tabChange(i);
+     }
+     })(i)
+     }*/
+
+    for (var i = 0; i < oLis.length; i++) {
+        (function (i) {
+            oLis[i].onmouseover = function () {
+                tabChange(i);
+            };
+
+        })(i);
+    }
+</script>
+</body>
+</html>

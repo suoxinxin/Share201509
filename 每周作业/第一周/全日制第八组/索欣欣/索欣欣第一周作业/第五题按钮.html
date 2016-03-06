@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body, input {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        input {
+            display: inline-block;
+            margin: 20px;
+            width: 100px;
+            height: 35px;
+            border: 1px solid #999;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="赤"/>
+<input type="button" value="黄"/>
+<input type="button" value="粉"/>
+<input type="button" value="绿"/>
+<input type="button" value="蓝"/>
+<script type="text/javascript">
+    var ary=["red","yellow","pink","green","blue"];
+    var btn = document.getElementsByTagName("input");
+    //用自定义属性实现
+//    function bindEvent() {
+        for (var i = 0; i < btn.length; i++) {
+            var cur=btn[i];
+            cur.zhuFeng = i;
+            cur.onclick = function () {
+                document.body.style.backgroundColor = ary[this.zhuFeng];
+            }
+        }
+//    }
+//    bindEvent();
+    //用闭包实现
+//        for (var i = 0; i < btn.length; i++) {
+//            var cur = btn[i];
+//            (function (i) {
+//                cur.onclick = function () {
+//                    document.body.style.backgroundColor = ary[i];
+//                }
+//            })(i);
+//        }
+
+</script>
+</body>
+
+</html>
